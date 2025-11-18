@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actv2</title>
+</head>
+<body>
+     <form>
+        <div>
+          <label for="modelo">Modelo:</label>
+          <select id="modelo" name="modelo">
+            <option value="R4">R4</option>
+            <option value="R5">R5</option>
+            <option value="SR1">SR1</option>
+          </select>
+        </div>
+        <div>
+          <label for="potencia">Potencia máxima:</label>
+          <input type="number" id="potencia" name="potencia" min="50" max="100">
+        </div>
+        <div>
+          <label for="bluetooth">¿Bluetooth?</label>
+          <input type="checkbox" id="bluetooth" name="bluetooth">
+        </div>
+        <div>
+          <label for="color">Color:</label>
+          <input type="text" id="color" name="color">
+        </div>
+        <div>
+          <input type="submit" value="Enviar">
+        </div>
+      </form>
+</body>
+</html>
