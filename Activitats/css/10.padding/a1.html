@@ -3,60 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
     <title>Padding A1</title>
 </head>
 <style>
     body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background: #f4efe7;
+    background: wheat;
+    position: relative;
 }
+
 .izquierda img{
-    width: 100%;
-    max-width: 420px;
+    border: 2px solid;
+    position: absolute;
+    top: 200px;
+    right: 150px;
+    width: 300px;
+    height: 300px;
+    margin: -50px 100px ;
+    
 }
 .s1 {
     max-width: 700px;
-    margin: auto;
-    text-align: center;
+    margin: right;
+    text-align: left;
     padding: 80px 20px;
-}
+    max-width: 350px;
+    max-height: 300;
+  }
 
 
 h1 {
     font-size: 32px;
-    margin-bottom: 20px;
+    margin-bottom: 100px;
+    text-align:left;
+    margin-bottom: auto;
 }
 
 p {
     font-size: 18px;
     line-height: 1.5;
-    margin-bottom: 30px;
+    margin-bottom: 0px;
+    margin-right:100px ;
+
 }
 
-.btn {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin-bottom: 40px;
-}
 
 .btn {
-    padding: 12px 25px;
+    padding: 32px 25px;
     border-radius: 5px;
     text-decoration: none;
     font-weight: bold;
 }
 
 .btn1 {
-    background: #ffe01b;
+    background: blue;
     color: black;
 }
 
 .btn2 {
-    border: 2px solid black;
-    color: black;
+    color: blue;
 }
 
 .pp {
@@ -77,15 +83,14 @@ p {
         <div class="btn">
             <a href="#" class="btn1">Suscríbete</a>
             <a href="#" class="btn2">Comparar planes</a>
-        </div>
-
-        <p class="pp">
-            Mailchimp ha sido adquirida por Intuit. Nuestro cofundador y CEO compartió la noticia con nuestros clientes. Léela aquí en inglés.
-        </p>
-        <div class="izquierda">
+        </div>       
+    </section>
+     <div class="izquierda">
             <img src="../../../img/picasso.webp" alt="">
         </div>
-    </section>
+         <p class="pp">
+            Mailchimp ha sido adquirida por Intuit. Nuestro cofundador y CEO compartió la noticia con nuestros clientes. Léela <a href="#">aquí</a> en inglés.
+        </p>
 
 </body>
 </html>
