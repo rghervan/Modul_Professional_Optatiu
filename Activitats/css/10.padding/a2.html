@@ -5,22 +5,183 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Padding A2</title>
 </head>
+<style>
+    *{
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+    body{
+        background: white;
+        padding: 40px 20px;
+        display: flex;
+        justify-content: center;
+    }
+    .tabla1{
+        max-width: 1100px;
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(4,1fr);
+        gap: 16px;
+    }
+    .tabla1 {
+      background: #ffffff;
+      border: 1px solid #dedede;
+      padding: 24px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 420px;
+    }
+    .p_header{
+        margin-bottom: 16px;
+    }
+    .titulo{
+        font-size: 20px;
+        font-weight: 700;
+        margin-bottom: 6px;
+    }
+    .subtitulo{
+        font-size: 13px;
+        line-height: 1.4;
+        color: darkgray;
+        margin-bottom: 14px;
+    }
+    .precio{
+        font-size: 24px;
+        font-weight: 700;
+        margin-bottom: 4px;
+    }
+    .precio span{
+        font-size: 14px;
+        font-weight: 400;
+    }
+    .contact{
+        font-size: 12px;
+        color:#666
+        margin-bottom: 16px;
+    }
+    .pregunta{
+        font-size: 12px;
+        color: #007c89;
+        text-decoration: underline;
+        cursor:pointer ;
+        margin-bottom: 16px;
+    }
+    .botton_p1{
+        display: inline-block;
+        font-size: 13px;
+        font-weight: 600;
+        padding: 8px 14px;
+        border-radius: 3px;
+        border: 1px solid #006c89;
+        color: #fffff;
+        text-align:center;
+        text-decoretion: none;
+        margin-bottom: 18px;
+    }
+    .opciones_plan_titulo{
+    font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #444;
+      margin-bottom: 8px;
+    }
+    .opciones_plan_titulo span{
+      font-weight: 400;
+      text-transform: none;
+      letter-spacing: normal;
+    }
+    .opciones_plan{
+      list-style: none;
+      font-size: 13px;
+      color: #333;
+      margin-bottom: 16px;
+    }
+    .opciones_plan li{
+        margin-bottom: 6px;
+    }
+    .pie_de_pagina_link{
+      font-size: 12px;
+      color: #007c89;
+      text-decoration: underline;
+      cursor: pointer;
+      margin-top: auto;
+    }
+    @media (max-width: 900px) {
+      .tabla1 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (max-width: 600px) {
+      .tabla1 {
+        grid-template-columns: 1fr;
+      }
+    }
+</style>
 <body>
-    <div class="1">
+    <div class="tabla1">
         <div class="premium">
-            <p>Pewmium</p>
-        </div>
-    </div>
-    <div>
-        <p>
-            Funciones avanzadas para profesionales
-        </p>
-    </div>
-    <div>
+            <div class="p_header">
+                <div class="titulo">Premium</div>
+                <div class="subtitulo">
+                     Funciones avanzadas para profesionales que necesitan más personalización
+                </div>
+                <div class="precio">
+                    Desde $299 <span>/mes</span>
+                </div>
+                <div class="contact">
+                    Basados en 10,000 contactos*
+                </div>
+                <div class="pregunta">¿Cuantos contactos tienes?</div>
+                <a href="#" class="botton_p1">Compra ahora</a>
+            </div>
+            <div>
+            <div class="opciones_plan_titulo">
+                Todod lo que incluye el plan Standard, <span>más:</span>
+            </div>
+                <ul class="opciones_plan">
+                    <li>Segmentacion avanzada</li>
+                    <li>Pruebas multivarientes</li>
+                    <li>INformes comarativos</li>
+                    <li>Puestos ilimitados i acceso basadoen funciones</li>
+                    <li>Asistencia tecnica telefonica</li>
+                </ul>
+            </div>
 
+            <div class="pie_de_pagina_link">Acerca de Premium</div>
     </div>
-    <div>
 
+            <div class="premium">
+            <div class="p_header">
+                <div class="titulo">Premium</div>
+                <div class="subtitulo">
+                     Funciones avanzadas para profesionales que necesitan más personalización
+                </div>
+                <div class="precio">
+                    Desde $299 <span>/mes</span>
+                </div>
+                <div class="contact">
+                    Basados en 10,000 contactos*
+                </div>
+                <div class="pregunta">¿Cuantos contactos tienes?</div>
+                <a href="#" class="botton_p1">Compra ahora</a>
+            </div>
+            <div>
+            <div class="opciones_plan_titulo">
+                Todod lo que incluye el plan Standard, <span>más:</span>
+            </div>
+                <ul class="opciones_plan">
+                    <li>Segmentacion avanzada</li>
+                    <li>Pruebas multivarientes</li>
+                    <li>INformes comarativos</li>
+                    <li>Puestos ilimitados i acceso basadoen funciones</li>
+                    <li>Asistencia tecnica telefonica</li>
+                </ul>
+            </div>
+
+            <div class="pie_de_pagina_link">Acerca de Premium</div>
     </div>
 </body>
 </html>
