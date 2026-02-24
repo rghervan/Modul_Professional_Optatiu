@@ -1,0 +1,46 @@
+body{
+    background-color:  wheat;
+    max-height: 500px;
+}
+nav > a{
+ color: black;
+    margin: 55px;
+    padding: 10px;
+    text-decoration: none;
+}
+
+
+nav a:hover{
+    background-color: black;
+    color: white;
+    
+}
+header{
+    background-color: white;
+    padding: 15px;
+}
+.fondo img{ 
+    width: 40%; /* Tamaño adaptativo */
+    aspect-ratio: 1 / 1; /* Aspecto cuadrado */
+    margin-left: 50%;
+    margin-top: -10%;
+    object-position: center; /* Centra la imagen en el recorte */
+    border-radius: 50%; /* Redondea la imagen */
+
+}
+h1 {
+    font-size: 60px;
+}
+
+footer{
+        text-align: center;
+        margin-top: 10px;
+        padding-bottom: 1rem;
+        margin-block: 13rem;
+        border-top: 1px solid rgb(29, 29, 29);
+        border-bottom: 1px solid rgb(29, 29, 29);
+        background-color: white;
+}
+#cc{
+    margin-top: 37px;
+}
