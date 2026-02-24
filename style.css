@@ -1,6 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    background: #f4f4f4;
+    background: wheat;
     margin: 0;
     padding: 0;
     color: #333;
@@ -10,6 +10,7 @@ nav > a{
     margin: 50px;
     padding: 10px;
     text-decoration: none;
+    background-color: wheat;
 }
 
 
@@ -21,7 +22,7 @@ nav a:hover{
 header {
     text-align: center;
     padding: 40px 0;
-    background: white;
+    background: wheat;
     border-bottom: 2px solid #ddd;
 }
 .foto { width: 150px; /* Tamaño de la imagen */ 
