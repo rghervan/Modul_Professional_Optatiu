@@ -41,6 +41,18 @@
         font-weight: 700;
         margin-bottom: 6px;
     }
+    .recomendado {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #ffffff;
+      background: #f25f25;
+      display: inline-block;
+      padding: 3px 6px;
+      border-radius: 2px;
+      margin-bottom: 8px;
+    }
     .subtitulo{
         font-size: 13px;
         line-height: 1.4;
@@ -75,7 +87,7 @@
         padding: 8px 14px;
         border-radius: 3px;
         border: 1px solid #006c89;
-        color: #fffff;
+        color: #ffffff;
         text-align:center;
         text-decoretion: none;
         margin-bottom: 18px;
@@ -109,16 +121,18 @@
       cursor: pointer;
       margin-top: auto;
     }
-    @media (max-width: 900px) {
-      .tabla1 {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-    @media (max-width: 600px) {
-      .tabla1 {
-        grid-template-columns: 1fr;
-      }
-    }
+    .premium { border-top: 4px solid #241c15; }
+    .standard { border-top: 4px solid #007c89; }
+    .essentials { border-top: 4px solid #6929c4; }
+    .free { border-top: 4px solid #00a862; }
+   .tabla1{
+    max-width: 1100px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 16px;
+}
+
 </style>
 <body>
     <div class="tabla1">
@@ -152,36 +166,97 @@
 
             <div class="pie_de_pagina_link">Acerca de Premium</div>
     </div>
-
-            <div class="premium">
+       <div class="standard">
             <div class="p_header">
-                <div class="titulo">Premium</div>
+                <div class="recomendado">Recomendado por Mailchimp</div>
+                <div class="titulo">Standard</div>
                 <div class="subtitulo">
-                     Funciones avanzadas para profesionales que necesitan más personalización
+                    Herramientas de optimización y automatización basadas en datos para empresas que desean crecer más rápido
                 </div>
                 <div class="precio">
-                    Desde $299 <span>/mes</span>
+                    Desde $14 <span>/mes</span>
                 </div>
                 <div class="contact">
-                    Basados en 10,000 contactos*
+                     basado en 500 contactos*
                 </div>
                 <div class="pregunta">¿Cuantos contactos tienes?</div>
                 <a href="#" class="botton_p1">Compra ahora</a>
             </div>
             <div>
             <div class="opciones_plan_titulo">
-                Todod lo que incluye el plan Standard, <span>más:</span>
+                Todo lo incluido en el plan Essentials, <span>más:</span>
             </div>
                 <ul class="opciones_plan">
-                    <li>Segmentacion avanzada</li>
-                    <li>Pruebas multivarientes</li>
-                    <li>INformes comarativos</li>
-                    <li>Puestos ilimitados i acceso basadoen funciones</li>
-                    <li>Asistencia tecnica telefonica</li>
+                 <li>Creador de recorridos del cliente + Puntos de ramificación</li>
+                 <li>Optimización de la hora de envío</li>
+                 <li>Redireccionamiento condicional</li>
+                <li>Plantillas personalizadas</li>
+                <li>Contenido dinámico</li>
+                </ul>
+            </div>
+
+            <div class="pie_de_pagina_link">Acerca de Standard</div>
+    </div>
+          <div class="essentials">
+            <div class="p_header">
+                <div class="titulo">Essentials</div>
+                <div class="subtitulo">
+                     Ideal para los que solo envían correos electrónicos y quieren seleccionar a su audiencia
+                </div>
+                <div class="precio">
+                    Desde $9.99 <span>/mes</span>
+                </div>
+                <div class="contact">
+                    basado en 500 contactos*
+                </div>
+                <div class="pregunta">¿Cuantos contactos tienes?</div>
+                <a href="#" class="botton_p1">Compra ahora</a>
+            </div>
+            <div>
+            <div class="opciones_plan_titulo">
+                Todo lo que incluye el plan Free, <span>más:</span>
+            </div>
+                <ul class="opciones_plan">
+                    <li>Plantillas de correo electrónico</li>
+                    <li>Recorridos con varios pasos</li>
+                    <li>Imagen corporativa personalizada</li>
+                    <li>Pruebas A/B</li>
+                    <li>Asistencia técnica ininterrumpida (24/7) por correo electrónico y chat</li>
                 </ul>
             </div>
 
             <div class="pie_de_pagina_link">Acerca de Premium</div>
     </div>
+          <div class="free">
+            <div class="p_header">
+                <div class="titulo">Free</div>
+                <div class="subtitulo">
+                      Todas las herramientas multicanal que necesitas para desarrollar tu negocio y hacer crecer tu público  
+                </div>
+                <div class="precio">
+                     $0 <span>/mes</span>
+                </div>
+                <div class="contact">
+                    basado en 2,000 contactos*
+                </div>
+                <a href="#" class="botton_p1">Regístrate gratis</a>
+            </div>
+            <div>
+            <div class="opciones_plan_titulo">
+                Todo lo que incluye el plan Free:
+            </div>
+                <ul class="opciones_plan">
+                    <li>Marketing CRM</li>
+                    <li>Asistente Creativo</li>
+                    <li>Creador de sitios web</li>
+                    <li>Dominio de Mailchimp</li>
+                    <li>Páginas de destino y formularios</li>
+                </ul>
+            </div>
+
+            <div class="pie_de_pagina_link">Acerca de Free</div>
+    </div>
+    </div>
+           
 </body>
 </html>
