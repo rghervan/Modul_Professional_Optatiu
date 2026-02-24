@@ -4,7 +4,7 @@ body{
 }
 nav > a{
  color: black;
-    margin: 55px;
+    margin: 50px;
     padding: 10px;
     text-decoration: none;
 }
@@ -23,24 +23,49 @@ header{
     width: 40%; /* Tamaño adaptativo */
     aspect-ratio: 1 / 1; /* Aspecto cuadrado */
     margin-left: 50%;
-    margin-top: -10%;
+    margin-top: -15%;
     object-position: center; /* Centra la imagen en el recorte */
-    border-radius: 50%; /* Redondea la imagen */
+    display: block;
+    border-radius: 12px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.35);
 
 }
 h1 {
     font-size: 60px;
 }
+p{
+    font-size: 15px;
+    font-weight: 600;
+    padding: 30px;
+    margin: 15px;
+    width: 40%;
+    margin-bottom: auto;
+    padding-bottom: auto;
+    
+}
 
 footer{
+        display:flex;
         text-align: center;
-        margin-top: 10px;
-        padding-bottom: 1rem;
-        margin-block: 13rem;
+        justify-content: center;
+        margin-top: 7px;
+        gap: 40px;
+        padding: 20px 0;
         border-top: 1px solid rgb(29, 29, 29);
         border-bottom: 1px solid rgb(29, 29, 29);
         background-color: white;
 }
-#cc{
-    margin-top: 37px;
+footer a:hover{
+background-color: black;
+color: white;
+}
+.cc{
+    width: 100px;
+    
+}
+.facebook img{
+   width: 40%;
+}
+.twiter img{
+    width:40%;
 }
