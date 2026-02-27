@@ -20,7 +20,7 @@ header{
     padding: 15px;
 }
 .fondo img{ 
-    width: 40%; /* Tamaño adaptativo */
+    width: 30%; /* Tamaño adaptativo */
     aspect-ratio: 1 / 1; /* Aspecto cuadrado */
     margin-left: 50%;
     margin-top: -15%;
@@ -34,13 +34,14 @@ h1 {
     font-size: 60px;
 }
 p{
-    font-size: 15px;
+    font-size: 25px;
     font-weight: 600;
     padding: 30px;
     margin: 15px;
     width: 40%;
     margin-bottom: auto;
     padding-bottom: auto;
+
     
 }
 
