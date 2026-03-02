@@ -3,7 +3,7 @@ body{
     max-height: 500px;
 }
 nav > a{
- color: black;
+    color: black;
     margin: 50px;
     padding: 10px;
     text-decoration: none;
@@ -18,23 +18,24 @@ nav a:hover{
 header{
     background-color: white;
     padding: 40px;
+    font-size: 200%;
 }
 .fondo img{ 
     width: 30%; /* Tamaño adaptativo */
     aspect-ratio: 1 / 1; /* Aspecto cuadrado */
     margin-left: 50%;
-    margin-top: -15%;
+    margin-top: 20%;
     object-position: center; /* Centra la imagen en el recorte */
     display: block;
     border-radius: 12px;
     box-shadow: 0 20px 40px rgba(0,0,0,0.35);
-    margin-top: -30%;
+    margin-top: -19%;
 }
 h1 {
     font-size: 60px;
 }
 p{
-    font-size: 35px;
+    font-size: 20px;
     font-weight: 600;
     padding: 30px;
     margin: 15px;
