@@ -22,3 +22,15 @@ header{
     padding: 40px;
     font-size: 200%;
 }
+.contenedor{
+    display: flex; 
+    gap: 20px; 
+}
+.html{
+flex: 1;
+
+}
+.css{
+    flex: 1;
+}
+

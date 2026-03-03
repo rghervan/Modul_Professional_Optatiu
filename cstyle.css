@@ -29,9 +29,9 @@ header{
 }
 
 .contacto-container {
-    margin-bottom: 10px;
+    
     max-width: 500px;
-    margin: auto;
+    margin: 10% 40%;
     background: #fff;
     padding: 30px;
     border-radius: 10px;
