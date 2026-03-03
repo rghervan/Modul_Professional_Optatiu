@@ -11,8 +11,8 @@ body {
 }
 nav > a{
  color: black;
-    margin: 50px;
-    padding: 30px;
+    margin: 30px;
+    padding: 20px;
     text-decoration: none;
 }
 
@@ -24,7 +24,7 @@ nav a:hover{
 }
 header{
     background-color: white;
-    padding: 15px;
+    padding: 30px;
     font-size: 300%;
 }
 
