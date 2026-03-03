@@ -26,16 +26,15 @@ header {
     background: wheat;
     border-bottom: 2px solid #ddd;
 }
-.foto { width: 150px; /* Tamaño de la imagen */ 
+.foto { 
+        width: 150px; /* Tamaño de la imagen */ 
         height: auto; 
         display: block;
         margin-top: 2%;
         border-radius: 12px;
         box-shadow: 0 20px 40px rgba(0,0,0,0.35);
-        margin:  0 auto;
-      
-       
-    }
+        margin:  3% 45%;
+}
 
 h1 {
     margin: 50px;
