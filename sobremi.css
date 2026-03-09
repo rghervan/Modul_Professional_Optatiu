@@ -1,46 +1,19 @@
-/* Reset suave */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: Arial, sans-serif;
-  background-color: wheat;
+
+nav > a{
+    color: black;
+    margin: 50px;
+    padding: 10px;
+    text-decoration: none;
 }
 
-/* Navegación */
-nav {
-  background: #111;
-  padding: 15px;
-}
 
-nav ul {
-  display: flex;
-  gap: 20px;
-  list-style: none;
+nav a:hover{
+    background-color: black;
+    color: white;
+    
 }
-
-nav li {
-  color: white;
-  cursor: pointer;
+header{
+    background-color: white;
+    padding: 40px;
+    font-size: 200%;
 }
-
-/* Hero */
-#hero {
-  padding: 80px 20px;
-  text-align: center;
-  background: #f2f2f2;
-}
-
-#hero h1 {
-  font-size: 3rem;
-  margin-bottom: 10px;
-}
-
-#hero p {
-  font-size: 1.2rem;
-  color: #555;
-}
-
-#hero a {
-  display: inline-block;
-  margin
