@@ -13,7 +13,38 @@ nav a:hover{
     
 }
 header{
-    background-color: white;
+    background-color: wheat;
     padding: 40px;
     font-size: 200%;
+}
+
+body{
+    background-color: black;
+}
+main{
+    background-color:wheat ;
+    width: auto;
+    height: 750px;
+}
+.portada{
+
+}
+.foto { 
+        width: 350px; /* Tamaño de la imagen */ 
+        height: auto; 
+        position: absolute;
+        margin-top: -10%;
+        border-radius: 12px;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.35);
+        margin:  -30% 60%;
+       
+}
+.info{
+     font-size: 20px;
+    padding: 30px;
+    margin: 15px;
+    width: 40%;
+    margin-bottom: auto;
+    padding-bottom: auto;
+
 }
