@@ -13,7 +13,7 @@ console.log(missatge2);
 */
 //Parts d'una funció
 //entrades(arguments), codi, sortida(return)
-
+/*
 function quadratNumero(num){
     var resultat = num * num;
     return resultat;
@@ -23,10 +23,10 @@ var numero = 3;
 var valor = quadratNumero(numero);
 console.log(valor);
 console.log(quadratNumero(5));
-
+*/
 //Funció que converteix de graus Fahrenheit a Celsius
-// 32F = 0C, 68F = 20C.
-// C = (F - 32) * 5/9
+ // 32F = 0C, 68F = 20C.
+ //C = (F - 32) * 5/9
 /*
 function convertirFahrenheitACelsius(grausFah){
     var celsius = (grausFah - 32) * 5 / 9;
