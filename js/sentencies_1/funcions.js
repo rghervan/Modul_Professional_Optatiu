@@ -13,17 +13,38 @@ console.log(missatge2);
 */
 //Parts d'una funció
 //entrades(arguments), codi, sortida(return)
-/*
+
 function quadratNumero(num){
     var resultat = num * num;
     return resultat;
 }
 
-var numero = 3;
-var valor = quadratNumero(numero);
-console.log(valor);
-console.log(quadratNumero(5));
-*/
+function multiplicarNums (num1,num2)
+{
+    var r = num1*num2;
+    return r;
+
+}
+
+function multiplicaQuadrats(num1,num2)
+{
+    var n1=quadratNumero(num1);
+    var n2=quadratNumero(num2);
+    return multiplicarNums(n1,n2);
+}
+    var mquadrats=multiplicaQuadrats(2,3);
+    console.log(mquadrats); 
+
+var numero = 2;
+var c = quadratNumero(quadratNumero(numero));
+console.log(c);
+var suma = 4 + multiplicarNums(7,4);
+console.log (suma);
+
+//var valor = quadratNumero(numero);
+//console.log(valor);
+//console.log(quadratNumero(5));
+
 //Funció que converteix de graus Fahrenheit a Celsius
  // 32F = 0C, 68F = 20C.
  //C = (F - 32) * 5/9
@@ -108,7 +129,7 @@ var b = 10;
 console.log(`La suma és: ${a + b}`);*/
 
 
-/***************
+/*
  * Exercici 4
  * Implementar una funció que ens permeti avaluar el 
  * percentatge de respostes positives i negatives d'un examen
