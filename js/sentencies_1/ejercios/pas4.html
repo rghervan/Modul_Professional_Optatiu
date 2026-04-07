@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dos cercles</title>
+</head>
+<body>
+    <canvas id="miCanvas" width="500" height="300" style="border: 1px solid black;"></canvas>
+
+<script>
+  let canvas = document.getElementById("miCanvas");
+  let ctx = canvas.getContext("2d");
+
+  // Cercle 1
+  let x1 = 250;
+  let y1 = 150;
+  let radi1 = 50;
+
+  ctx.beginPath();
+  ctx.arc(x1, y1, radi1, 0, Math.PI * 2);
+  ctx.fillStyle = "orange";
+  ctx.fill();
+  ctx.lineWidth = 3;
+  ctx.strokeStyle = "black";
+  ctx.stroke();
+
+  // Cercle 2
+  let x2 = 50;
+  let y2 = 50;
+  let radi2 = 50;
+
+  ctx.beginPath();
+  ctx.arc(x2, y2, radi2, 0, Math.PI * 2);
+  ctx.fillStyle = "pink";
+  ctx.fill();
+  ctx.lineWidth = 3;
+  ctx.strokeStyle = "black";
+  ctx.stroke();
+</script>
+</body>
+</html>

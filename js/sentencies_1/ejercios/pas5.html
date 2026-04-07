@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <canvas id="miCanvas" width="500" height="300" style="border: 1px solid black;"></canvas>
+
+<script>
+  let canvas = document.getElementById("miCanvas");
+  let ctx = canvas.getContext("2d");
+
+  let posicioX = 0;
+
+  function animar() {
+    // 1. Esborrar el canvas sencer abans de dibuixar el nou fotograma
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // 2. Dibuixar el quadrat a la nova posició
+    ctx.fillStyle = "purple";
+    ctx.fillRect(posicioX, 100, 50, 50);
+
+    // 3. Actualitzar la posició per al següent fotograma
+    posicioX += 2; 
+    
+    // Si surt de la pantalla, tornar-lo a l'inici
+    if(posicioX > canvas.width) {
+      posicioX = -50;
+    }
+
+    // 4. Demanar al navegador que cridi 'animar' de nou
+    requestAnimationFrame(animar);
+  }
+
+  // Iniciar l'animació
+  animar();
+</script>
+</body>
+</html>

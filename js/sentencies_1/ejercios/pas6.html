@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <title>Projecte Final - Pilota Controlada</title>
+  <style>
+    body { display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; background-color: #f4f4f4; }
+    canvas { background-color: white; border: 3px solid #2c3e50; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); }
+  </style>
+</head>
+<body>
+
+<canvas id="jocCanvas" width="600" height="400"></canvas>
+
+<script>
+  let canvas = document.getElementById("jocCanvas");
+  let ctx = canvas.getContext("2d");
+
+  // Propietats de la pilota
+  let x = canvas.width / 2;
+  let y = canvas.height / 2;
+  let radi = 20;
+
+  // Velocitat de moviment
+  let velocitat = 5;
+
+  // Direccions
+  let esquerra = false;
+  let dreta = false;
+  let amunt = false;
+  let avall = false;
+
+  // Detectar tecles premudes
+  document.addEventListener("keydown", function(e) {
+    if (e.key === "ArrowLeft") esquerra = true;
+    if (e.key === "ArrowRight") dreta = true;
+    if (e.key === "ArrowUp") amunt = true;
+    if (e.key === "ArrowDown") avall = true;
+  });
+
+   // Detectar quan es deixen anar
+  document.addEventListener("keyup", function(e) {
+    if (e.key === "ArrowLeft") esquerra = false;
+    if (e.key === "ArrowRight") dreta = false;
+    if (e.key === "ArrowUp") amunt = false;
+    if (e.key === "ArrowDown") avall = false;
+  });
+
+  function dibuixarPilota() {
+    ctx.beginPath();
+    ctx.arc(x, y, radi, 0, Math.PI * 2);
+    ctx.fillStyle = "#e74c3c";
+    ctx.fill();
+    ctx.closePath();
+  }
+
+  function actualitzar() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Moviment segons tecles
+    if (esquerra && x - velocitat > radi) x -= velocitat;
+    if (dreta && x + velocitat < canvas.width - radi) x += velocitat;
+    if (amunt && y - velocitat > radi) y -= velocitat;
+    if (avall && y + velocitat < canvas.height - radi) y += velocitat;
+
+    dibuixarPilota();
+
+    requestAnimationFrame(actualitzar);
+  }
+
+  actualitzar();
+</script>
+
+</body>
+</html>
