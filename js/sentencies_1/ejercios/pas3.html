@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Triangle Pintat</title>
+</head>
+<body>
+    <canvas id="miCanvas" width="500" height="300" style="border: 1px solid black;"></canvas>
+
+<script>
+  let canvas = document.getElementById("miCanvas");
+  let ctx = canvas.getContext("2d");
+
+  ctx.beginPath();
+  ctx.moveTo(0, 0);
+  ctx.lineTo(200, 50);
+  ctx.lineTo(550, 350);
+  ctx.closePath();        // ✔️ Tanca el triangle
+
+  ctx.fillStyle = "yellow"; // ✔️ Color d'emplenat
+  ctx.fill();               // ✔️ Pinta l'interior
+
+  ctx.lineWidth = 5;
+  ctx.strokeStyle = "green";
+  ctx.stroke();             // ✔️ Dibuixa la vora
+</script>
+</body>
+</html>
