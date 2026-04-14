@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <title>Capítol 2: L'Objecte Event (Coordenades)</title>
+  <style>
+    body { display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; background-color: #f4f4f4; font-family: sans-serif; }
+    canvas { background-color: white; border: 3px solid #2c3e50; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); }
+    .info { position: absolute; top: 10px; left: 10px; background: white; padding: 10px; border-radius: 5px; border: 1px solid #ccc; }
+    p.nosaltar { display: inline; }
+
+ </style>
+</head>
+<body>
+
+<div class="info">Fes clic per moure la pilota a la posició del ratolí.
+  <br/>
+  <br/>
+  <br/>
+   <p class="nosaltar">Coordenada X: </p>
+  <p class="nosaltar" id="coordX">0</p>
+ <p class="nosaltar">Coordenada Y: </p>
+  <p class="nosaltar" id="coordY">0</p>
+</div>
+<canvas id="jocCanvas" width="600" height="400"></canvas>
+
+<script>
+  let canvas = document.getElementById("jocCanvas");
+  let ctx = canvas.getContext("2d");
+
+  let coordX = document.getElementById("coordX");
+  let coordY = document.getElementById("coordY");
+
+
+  // Propietats de la pilota
+  let x = canvas.width / 2;
+  let y = canvas.height / 2;
+  let dx = 4; 
+  let dy = -4; 
+  let radi = 20;
+  let colorPilota = "#e74c3c"; 
+
+  function dibuixarPilota() {
+    ctx.beginPath();
+    ctx.arc(x, y, radi, 0, Math.PI * 2);
+    ctx.fillStyle = colorPilota; 
+    ctx.fill();
+    ctx.closePath();
+  }
+
+  function actualitzar() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height); 
+    dibuixarPilota();
+
+    if(x + dx > canvas.width - radi || x + dx < radi) { dx = -dx; }
+    if(y + dy > canvas.height - radi || y + dy < radi) { dy = -dy; }
+
+    x += dx;
+    y += dy;
+
+    coordX.textContent =  Math.round(x)
+    coordY.textContent = Math.round(y);
+
+
+    requestAnimationFrame(actualitzar); 
+  }
+
+  actualitzar();
+
+  // --- CODI D'EVENTS ---
+  
+  canvas.addEventListener('click', function(e) {
+
+    console.log("Event:", e);
+
+    // Obtenim la posició del canvas a la pantalla
+    let rect = canvas.getBoundingClientRect();
+    
+    // Calculem X i Y relatives al canvas
+    x = e.clientX - rect.left;
+    y = e.clientY - rect.top;
+    
+    // Canviar color
+    colorPilota = '#' + Math.floor(Math.random()*16777215).toString(16);
+  });
+
+</script>
+
+</body>
+</html>

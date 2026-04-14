@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <title>Capítol 3: Events de Teclat</title>
+  <style>
+    body { display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; background-color: #f4f4f4; font-family: sans-serif; }
+    canvas { background-color: white; border: 3px solid #2c3e50; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); }
+    .info { position: absolute; top: 10px; left: 10px; background: white; padding: 10px; border-radius: 5px; border: 1px solid #ccc; }
+    p.nosaltar { display: inline; }
+
+  </style>
+</head>
+<body>
+
+<div class="info">Clic per moure. Espai per girar. Fletxes per velocitat.
+  <br/>
+  <br/>
+  <br/>
+  <p class="nosaltar">Tecla polsada:</p>
+  <p class="nosaltar" id="kp"></p>
+</div>
+
+<canvas id="jocCanvas" width="600" height="400"></canvas>
+
+<script>
+  let canvas = document.getElementById("jocCanvas");
+  let ctx = canvas.getContext("2d");
+
+  let tecla = document.getElementById("kp");
+
+  // Propietats de la pilota
+  let x = canvas.width / 2;
+  let y = canvas.height / 2;
+  let dx = 4; 
+  let dy = -4; 
+  let radi = 20;
+  let colorPilota = "#e74c3c"; 
+
+  function dibuixarPilota() {
+    ctx.beginPath();
+    ctx.arc(x, y, radi, 0, Math.PI * 2);
+    ctx.fillStyle = colorPilota; 
+    ctx.fill();
+    ctx.closePath();
+  }
+
+  function actualitzar() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height); 
+    dibuixarPilota();
+
+    if(x + dx > canvas.width - radi || x + dx < radi) { dx = -dx; }
+    if(y + dy > canvas.height - radi || y + dy < radi) { dy = -dy; }
+
+    x += dx;
+    y += dy;
+
+    requestAnimationFrame(actualitzar); 
+  }
+
+  actualitzar();
+
+  // --- CODI D'EVENTS ---
+  
+  canvas.addEventListener('click', function(e) {
+    // Obtenim la posició del canvas a la pantalla
+    let rect = canvas.getBoundingClientRect();
+    
+    // Calculem X i Y relatives al canvas
+    x = e.clientX - rect.left;
+    y = e.clientY - rect.top;
+    
+    // Canviar color
+    colorPilota = '#' + Math.floor(Math.random()*16777215).toString(16);
+  });
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === " ") { // Tecla Espai per invertir
+      dx = -dx;
+      dy = -dy;
+    } else if (e.key === "ArrowUp") { // Més ràpid
+      dx *= 1.2;
+      dy *= 1.2;
+    } else if (e.key === "ArrowDown") { // Més lent
+      dx *= 0.8;
+      dy *= 0.8;
+    } else if (e.key >= "a" && e.key <= "z") {
+         tecla.textContent +=  e.key;
+    }
+  });
+
+</script>
+
+</body>
+</html>
