@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suma de dos nombres</title>
+</head>
+<body>
+
+    <h1>Resultat de la suma:</h1>
+    <div id="resultat"></div>
+
+    <script>
+        function sumarNombres(num1, num2) {
+            return num1 + num2;
+        }
+
+        // Exemple d'ús:
+        let nombre1 = 5;
+        let nombre2 = 10;
+        let suma = sumarNombres(nombre1, nombre2);
+
+        // Mostrar el resultat a l'element amb l'id "resultat"
+        document.getElementById("resultat").textContent = suma;
+    </script>
+
+</body>
+</html>
