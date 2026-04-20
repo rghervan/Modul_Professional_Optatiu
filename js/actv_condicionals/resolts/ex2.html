@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+      <h1>Verifica contraseña</h1>
+    <label for="contraseña">Contraseña</label>
+    <input type="text" id="contrseña">
+    <button onclick="verificarContraseña()">Prem per verificar</button>
+    <div id="contraseña"></div>
+
+    <script>
+        function verificarContraseña() {
+            let secreta="cinco";
+            let pass = document.getElementById("contraseña");
+            let contrasenyainput = pass.value;
+
+            if (secreta === contrasenyainput) {
+                resultat.textContent = "Ets major d'edat";
+            } else {
+                resultat.textContent = "Ets menor d'edat";
+            }
+        }
+    </script>
+</body>
+</html>
