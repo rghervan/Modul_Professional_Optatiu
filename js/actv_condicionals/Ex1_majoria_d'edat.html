@@ -10,15 +10,18 @@
     <label for="edat">Edat</label>
     <input type="text" id="edat">
     <button onclick="verificarMajoria()">Prem per verificar</button>
-<div id="majoredat></div>
+    <div id="majoredat"> </div>
+
     <script>
-        let edat= Document.getElementById("edat").value;
-        let
-        if (edat>=18){
-            majoredat.textContent="Ets major d'edat";
+        function verificarMajoria(){
+        let edat= document.getElementById("edat").value;
+        let resultat=document.getElementById("majoredat");
+        if (edat >= 18) {
+            resultat.textContent="Ets major d'edat";
         }
         else{
-            majoredat.textContent="Ets menor d'edat";
+            resultat.textContent="Ets menor d'edat";
+        }
         }
     </script>
 </body>
