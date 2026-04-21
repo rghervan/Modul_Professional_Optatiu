@@ -16,30 +16,18 @@
     <button onclick="comprovarsouyedat()">Comprovar</button>
 
     <div id="resultat"></div>
+    <div id="resultat2"></div>
 <script>
     function comprovarsouyedat(){
         let predat = document.getElementById("edat").value;
         let prsou = document.getElementById("sou").value;
         let resultat = document.getElementById("resultat");
+        
 
-        if(predat >= 16){
-        resultat.textContent = "Ets menor d'dat pero pots tributar";
+        if ((predat >= 16)&& (prsou >= 1000)) {
+        resultat.textContent = "Compleixes el dos requissits per tributar";
         }else{
-        resultat.textContent = "No pots tributar"
-        }
-        if(prsou >= 1000){
-            resultat.textContent = "Cobres mes de 1000 euros o el equivalent pots tributar";
-        } else {
-            resultat.textContent= "cobres menys de 1000 euros llavors no pots tributar"
-        }if(predat >= 16){
-        resultat.textContent = "Ets menor d'dat pero pots tributar";
-        }else{
-        resultat.textContent = "No pots tributar"
-        }
-        if(prsou >= 1000){
-            resultat.textContent = "Cobres mes de 1000 euros o el equivalent pots tributar";
-        } else {
-            resultat.textContent= "cobres menys de 1000 euros llavors no pots tributar"
+        resultat.textContent = "No compleixis un dels requissits per tributar"
         }
     }
 </script>
