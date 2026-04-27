@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificar obligacio tributaria</title>
+</head>
+<body>
+
+    <h1>Verificar obligacio tributaria</h1>
+
+    <label for="num">Introdueix la teva edat:</label>
+    <input type="edat" id="edat">
+    <label for="num">Introdueix el teu sou</label>
+    <input type="sou" id="sou">
+    <button onclick="comprovarsouyedat()">Comprovar</button>
+
+    <div id="resultat"></div>
+    <div id="resultat2"></div>
+<script>
+    function comprovarsouyedat(){
+        let predat = document.getElementById("edat").value;
+        let prsou = document.getElementById("sou").value;
+        let resultat = document.getElementById("resultat");
+        
+
+        if ((predat >= 16)&& (prsou >= 1000)) {
+        resultat.textContent = "Compleixes el dos requissits per tributar";
+        }else{
+        resultat.textContent = "No compleixis un dels requissits per tributar"
+        }
+    }
+</script>
+
+</body>
+</html>

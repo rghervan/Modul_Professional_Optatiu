@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercici 8 - Rendiment Laboral</title>
+</head>
+<body>
+    <h1>Avaluació de rendiment laboral</h1>
+
+    <label for="puntuacio">Introdueix la teva puntuació (0.0, 0.4 o 0.6+):</label>
+    <input type="number" id="puntuacio" step="0.1" min="0" max="1">
+
+    <br><br>
+
+    <button onclick="avaluar()">Calcular rendiment</button>
+
+    <h2 id="resultat"></h2>
+
+    <script>
+        function avaluar() {
+            let puntuacio = parseFloat(document.getElementById("puntuacio").value);
+            let resultat = document.getElementById("resultat");
+
+            if (isNaN(puntuacio) || puntuacio < 0) {
+                resultat.textContent = "Introdueix una puntuació vàlida.";
+                return;
+            }
+
+            let nivell = "";
+            let bonificacio = 2400 * puntuacio;
+
+            if (puntuacio === 0.0) {
+                nivell = "Inacceptable";
+            } else if (puntuacio === 0.4) {
+                nivell = "Acceptable";
+            } else if (puntuacio >= 0.6) {
+                nivell = "Meritòri";
+            } else {
+                resultat.textContent = "Puntuació no vàlida. Només s'accepten 0.0, 0.4 o 0.6+.";
+                return;
+            }
+
+            resultat.textContent = 
+                "Nivell: " + nivell + " | Bonificació: " + bonificacio.toFixed(2) + "€";
+        }
+    </script>
+</body>
+</html>

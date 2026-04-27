@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercici 1</title>
+</head>
+<body>
+    <h1>Repetir paraula 10 vegades</h1>
+
+    <label>Introdueix una paraula:</label>
+    <input type="text" id="paraula">
+
+    <button onclick="repetir()">Mostrar</button>
+
+    <div id="resultat"></div>
+
+    <script>
+        function repetir() {
+            let p = document.getElementById("paraula").value;
+            let out = "";
+
+            for (let i = 0; i < 10; i++) {
+                out += p + "<br>";
+            }
+
+            document.getElementById("resultat").innerHTML = out;
+        }
+    </script>
+</body>
+</html>

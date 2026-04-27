@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercici 6 - Grup A o B</title>
+</head>
+<body>
+    <h1>Assignació de grup</h1>
+
+    <label for="nom">Introdueix el teu nom:</label>
+    <input type="text" id="nom">
+
+    <br><br>
+
+    <label for="sexe">Introdueix el teu sexe:</label>
+    <select id="sexe">
+        <option value="home">Home</option>
+        <option value="dona">Dona</option>
+    </select>
+
+    <br><br>
+
+    <button onclick="comprovarGrup()">Mostrar grup</button>
+
+    <h2 id="resultat"></h2>
+
+    <script>
+        function comprovarGrup() {
+            let nom = document.getElementById("nom").value.trim();
+            let sexe = document.getElementById("sexe").value;
+            let resultat = document.getElementById("resultat");
+
+            if (nom === "") {
+                resultat.textContent = "Si us plau, introdueix un nom.";
+                return;
+            }
+
+            let lletra = nom.charAt(0).toUpperCase();
+            let grup = "";
+
+            // Regles de l'exercici
+            if (sexe === "dona" && lletra < "M") {
+                grup = "A";
+            } else if (sexe === "home" && lletra > "N") {
+                grup = "A";
+            } else {
+                grup = "B";
+            }
+
+            resultat.textContent = "Et correspon el grup: " + grup;
+        }
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercici 5</title>
+</head>
+<body>
+    <h1>Inversió anual</h1>
+
+    <label>Quantitat a invertir (€):</label>
+    <input type="number" id="quant">
+
+    <label>Interès anual (%):</label>
+    <input type="number" id="interes">
+
+    <label>Anys:</label>
+    <input type="number" id="anys">
+
+    <button onclick="calcular()">Calcular</button>
+
+    <div id="resultat"></div>
+
+    <script>
+        function calcular() {
+            let q = parseFloat(document.getElementById("quant").value);
+            let i = parseFloat(document.getElementById("interes").value) / 100;
+            let anys = parseInt(document.getElementById("anys").value);
+
+            let out = "";
+
+            for (let a = 1; a <= anys; a++) {
+                q = q * (1 + i);
+                out += "Any " + a + ": " + q.toFixed(2) + " €<br>";
+            }
+
+            document.getElementById("resultat").innerHTML = out;
+        }
+    </script>
+</body>
+</html>

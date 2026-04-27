@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercici 4</title>
+</head>
+<body>
+    <h1>Compte enrere</h1>
+
+    <label>Introdueix un nombre:</label>
+    <input type="number" id="num">
+
+    <button onclick="mostrar()">Mostrar</button>
+
+    <div id="resultat"></div>
+
+    <script>
+        function mostrar() {
+            let n = parseInt(document.getElementById("num").value);
+            let out = [];
+
+            for (let i = n; i >= 0; i--) {
+                out.push(i);
+            }
+
+            document.getElementById("resultat").textContent = out.join(", ");
+        }
+    </script>
+</body>
+</html>

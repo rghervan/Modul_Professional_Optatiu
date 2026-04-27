@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercici 2</title>
+</head>
+<body>
+    <h1>Anys complerts</h1>
+
+    <label>Introdueix la teva edat:</label>
+    <input type="number" id="edat">
+
+    <button onclick="mostrar()">Mostrar</button>
+
+    <div id="resultat"></div>
+
+    <script>
+        function mostrar() {
+            let edat = parseInt(document.getElementById("edat").value);
+            let out = "";
+
+            for (let i = 1; i <= edat; i++) {
+                out += i + "<br>";
+            }
+
+            document.getElementById("resultat").innerHTML = out;
+        }
+    </script>
+</body>
+</html>
