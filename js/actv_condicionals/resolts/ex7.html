@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercici 7 - Tipus Impositiu</title>
+</head>
+<body>
+    <h1>Càlcul del tipus impositiu</h1>
+
+    <label for="renda">Introdueix la teva renda anual (€):</label>
+    <input type="number" id="renda" min="0">
+
+    <br><br>
+
+    <button onclick="calcularImpost()">Mostrar tipus impositiu</button>
+
+    <h2 id="resultat"></h2>
+
+    <script>
+        function calcularImpost() {
+            let renda = parseFloat(document.getElementById("renda").value);
+            let resultat = document.getElementById("resultat");
+
+            if (isNaN(renda) || renda < 0) {
+                resultat.textContent = "Introdueix una renda vàlida.";
+                return;
+            }
+
+            let tipus = "";
+
+            if (renda < 10000) {
+                tipus = "5%";
+            } else if (renda <= 20000) {
+                tipus = "15%";
+            } else if (renda <= 35000) {
+                tipus = "20%";
+            } else if (renda <= 60000) {
+                tipus = "30%";
+            } else {
+                tipus = "45%";
+            }
+
+            resultat.textContent = "El teu tipus impositiu és: " + tipus;
+        }
+    </script>
+</body>
+</html>

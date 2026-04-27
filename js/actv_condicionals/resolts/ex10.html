@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercici 10 - Pizzeria Bella Napoli</title>
+</head>
+<body>
+    <h1>Pizzeria Bella Napoli</h1>
+
+    <label for="tipus">Vols una pizza vegetariana?</label>
+    <select id="tipus" onchange="mostrarIngredients()">
+        <option value="">-- Selecciona --</option>
+        <option value="veg">Sí, vegetariana</option>
+        <option value="no-veg">No, no vegetariana</option>
+    </select>
+
+    <br><br>
+
+    <div id="ingredients" style="display:none;">
+        <label for="ingredient">Tria un ingredient extra:</label>
+        <select id="ingredient"></select>
+    </div>
+
+    <br><br>
+
+    <button onclick="mostrarPizza()">Confirmar pizza</button>
+
+    <h2 id="resultat"></h2>
+
+    <script>
+        function mostrarIngredients() {
+            let tipus = document.getElementById("tipus").value;
+            let selector = document.getElementById("ingredient");
+            let div = document.getElementById("ingredients");
+
+            selector.innerHTML = ""; // limpiar opciones
+
+            if (tipus === "veg") {
+                selector.innerHTML += "<option value='Pimentó'>Pimentó</option>";
+                selector.innerHTML += "<option value='Tofu'>Tofu</option>";
+                div.style.display = "block";
+            } else if (tipus === "no-veg") {
+                selector.innerHTML += "<option value='Peperoni'>Peperoni</option>";
+                selector.innerHTML += "<option value='Pernil'>Pernil</option>";
+                selector.innerHTML += "<option value='Salmó'>Salmó</option>";
+                div.style.display = "block";
+            } else {
+                div.style.display = "none";
+            }
+        }
+
+        function mostrarPizza() {
+            let tipus = document.getElementById("tipus").value;
+            let ingredient = document.getElementById("ingredient").value;
+            let resultat = document.getElementById("resultat");
+
+            if (tipus === "") {
+                resultat.textContent = "Has de seleccionar el tipus de pizza.";
+                return;
+            }
+
+            let nomPizza = tipus === "veg" ? "Pizza Vegetariana" : "Pizza No Vegetariana";
+
+            resultat.textContent = 
+                nomPizza + " amb mozzarella, tomàquet i " + ingredient + ".";
+        }
+    </script>
+</body>
+</html>

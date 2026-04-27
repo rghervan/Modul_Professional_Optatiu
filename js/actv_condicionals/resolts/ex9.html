@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercici 9 - Preu de l'entrada</title>
+</head>
+<body>
+    <h1>Preu de l'entrada</h1>
+
+    <label for="edat">Introdueix la teva edat:</label>
+    <input type="number" id="edat" min="0">
+
+    <br><br>
+
+    <button onclick="calcularEntrada()">Calcular preu</button>
+
+    <h2 id="resultat"></h2>
+
+    <script>
+        function calcularEntrada() {
+            let edat = parseInt(document.getElementById("edat").value);
+            let resultat = document.getElementById("resultat");
+
+            if (isNaN(edat) || edat < 0) {
+                resultat.textContent = "Introdueix una edat vàlida.";
+                return;
+            }
+
+            let preu = "";
+
+            if (edat < 4) {
+                preu = "Gratis";
+            } else if (edat <= 18) {
+                preu = "5 €";
+            } else {
+                preu = "10 €";
+            }
+
+            resultat.textContent = "El preu de la teva entrada és: " + preu;
+        }
+    </script>
+</body>
+</html>
