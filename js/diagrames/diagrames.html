@@ -11,30 +11,57 @@
 <script>
   let canvas = document.getElementById("miCanvas");
   let ctx = canvas.getContext("2d");
+ //valors rodona
   let x1 = 250;
   let y1 = 200;
   let radi1 = 90;
-   ctx.fillStyle = "rgba(135, 206, 235, 1)";
-  // Dibuixar rectangle (x=50, y=50, amplada=150, alçada=100)
-  ctx.fillRect(0, 0, 700, 200);
+  // Rectangle 1
+  ctx.fillStyle = "rgba(135, 206, 235, 1)";
+    ctx.fillRect(0, 0, 700, 200);
 
-  // Definir color vermell semitransparent
+  // Rectangle 2
   ctx.fillStyle = "rgba(0, 0, 128, 1)";
   ctx.fillRect(0, 200, 700, 100);
   
   ctx.fillStyle = "rgba(194, 178, 128, 1)";
   
-  
 
-  ctx.lineWidth = 5;
+  
+  ctx.beginPath();
   ctx.strokeStyle = "wheat";
   ctx.fillStyle = "wheat"
   ctx.ellipse(250, 220, 150, 45,0 , 0, 2 * Math.PI);
+  ctx.closePath();
   ctx.fill();
-  ctx.fillStyle="#5C4033"
-  ctx.fillRect(125,190,10,50)
-  ctx.stroke();    // ✔️ Dibuixa la vora
   
+  //Arbol copa
+  ctx.beginPath();
+  ctx.fillStyle="green";
+  ctx.ellipse(129,150, 19, 30,0 , Math.PI, 2*Math.PI);
+  ctx.fill();
+  //Arbol tronco
+  ctx.fillStyle="#5C4033"
+  ctx.fillRect(125,155,10,50)
+
+//Casa techo
+ctx.fillStyle="red";
+ctx.beginPath();
+ctx.moveTo(250, 90);
+ctx.lineTo(200,120);
+ctx.lineTo(300,120);
+ctx.closePath();
+ctx.fill();
+// circulo 
+ctx.beginPath();
+ctx.arc(250,110,10,0,2*Math.PI);
+ ctx.fillStyle="blue";
+ ctx.fill();
+ctx.stroke();
+ctx.closePath();
+
+ // ctx.fillRect(200,100, 220,150);
+
+  //ctx.fill();
 </script>
 </body>
 </html>
