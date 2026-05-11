@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<!-- saved from url=(0045)https://ferraneloi.com/js/xuletari_de_JS.html -->
+<html lang="ca" data-theme="light"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JS + Canvas Cheatsheet</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  /* ── DARK THEME (default) ── */
+  [data-theme="dark"] {
+    --bg:         #0e0f14;
+    --surface:    #161820;
+    --surface2:   #1e2030;
+    --border:     #2a2d3e;
+    --text:       #cdd6f4;
+    --muted:      #6c7086;
+    --kw:         #cba6f7;
+    --fn:         #89dceb;
+    --str:        #a6e3a1;
+    --num:        #fab387;
+    --cm:         #585b70;
+    --hd-text:    #b4befe;
+    --btn-bg:     #1e2030;
+    --btn-border: #45475a;
+    --btn-text:   #cdd6f4;
+    --btn-hover:  #313244;
+  }
+
+  /* ── LIGHT THEME ── */
+  [data-theme="light"] {
+    --bg:         #f5f5f7;
+    --surface:    #ffffff;
+    --surface2:   #eeeef8;
+    --border:     #d0d0e8;
+    --text:       #1a1a2e;
+    --muted:      #888;
+    --kw:         #7c3aed;
+    --fn:         #0369a1;
+    --str:        #16a34a;
+    --num:        #c2410c;
+    --cm:         #9ca3af;
+    --hd-text:    #4f46e5;
+    --btn-bg:     #ffffff;
+    --btn-border: #c0c0d8;
+    --btn-text:   #1a1a2e;
+    --btn-hover:  #eeeef8;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    padding: 12px;
+    min-height: 100vh;
+    transition: background .25s, color .25s;
+  }
+
+  header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+    transition: border-color .25s;
+  }
+
+  header h1 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--hd-text);
+    letter-spacing: .04em;
+    flex: 1;
+    transition: color .25s;
+  }
+
+  header .subtitle {
+    font-size: 10px;
+    color: var(--muted);
+    font-family: 'JetBrains Mono', monospace;
+    transition: color .25s;
+  }
+
+  /* ── TOGGLE BUTTON ── */
+  #theme-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 12px;
+    background: var(--btn-bg);
+    border: 1px solid var(--btn-border);
+    border-radius: 20px;
+    color: var(--btn-text);
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    cursor: pointer;
+    white-space: nowrap;
+    flex-shrink: 0;
+    transition: background .2s, border-color .2s, color .2s;
+  }
+  #theme-btn:hover { background: var(--btn-hover); }
+
+  #theme-btn svg {
+    width: 13px;
+    height: 13px;
+    fill: var(--hd-text);
+    flex-shrink: 0;
+    transition: fill .25s;
+  }
+
+  /* ── GRID ── */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
+  }
+  .col { display: flex; flex-direction: column; gap: 6px; }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+    transition: background .25s, border-color .25s;
+  }
+
+  .card-title {
+    background: var(--surface2);
+    font-family: 'Inter', sans-serif;
+    font-size: 9px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    color: var(--hd-text);
+    padding: 4px 8px;
+    border-bottom: 1px solid var(--border);
+    transition: background .25s, color .25s, border-color .25s;
+  }
+
+  pre {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9.2px;
+    line-height: 1.6;
+    padding: 6px 8px;
+    white-space: pre-wrap;
+    word-break: break-all;
+    color: var(--text);
+    transition: color .25s;
+  }
+
+  .kw  { color: var(--kw);  transition: color .25s; }
+  .fn  { color: var(--fn);  transition: color .25s; }
+  .str { color: var(--str); transition: color .25s; }
+  .num { color: var(--num); transition: color .25s; }
+  .cm  { color: var(--cm);  font-style: italic; transition: color .25s; }
+
+  /* ── PRINT ── */
+  @media print {
+    #theme-btn { display: none; }
+    header .subtitle { display: none; }
+    body { padding: 6px; }
+    .card { break-inside: avoid; }
+    @page { size: A4 landscape; margin: 8mm; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>// JS + Canvas — Cheatsheet</h1>
+  <span class="subtitle">variables · consola · funcions · condicionals · bucles · DOM · events · canvas</span>
+
+  <button id="theme-btn" onclick="toggleTheme()">
+    <svg id="icon-theme" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"></path></svg>
+    <span id="btn-label">Fons fosc</span>
+  </button>
+</header>
+
+<div class="grid">
+
+  <!-- COL 1 -->
+  <div class="col">
+
+    <div class="card">
+      <div class="card-title">Variables</div>
+      <pre><span class="kw">var</span>   x = <span class="num">5</span>        <span class="cm">// function scope</span>
+<span class="kw">let</span>   y = <span class="num">10</span>       <span class="cm">// bloc scope</span>
+<span class="kw">const</span> PI = <span class="num">3.14</span>   <span class="cm">// constant</span>
+
+<span class="cm">// Tipus</span>
+<span class="kw">let</span> s = <span class="str">"hola"</span>     <span class="cm">// string</span>
+<span class="kw">let</span> n = <span class="num">42</span>        <span class="cm">// number</span>
+<span class="kw">let</span> b = <span class="kw">true</span>      <span class="cm">// boolean</span>
+<span class="kw">let</span> a = [<span class="num">1</span>, <span class="num">2</span>, <span class="num">3</span>] <span class="cm">// array</span>
+<span class="kw">let</span> o = { k:<span class="str">"v"</span> } <span class="cm">// object</span>
+<span class="kw">let</span> u = <span class="kw">null</span>      <span class="cm">// null</span>
+<span class="kw">let</span> v             <span class="cm">// undefined</span></pre>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Consola del navegador</div>
+      <pre><span class="fn">console</span>.<span class="fn">log</span>(<span class="str">"missatge"</span>)
+<span class="fn">console</span>.<span class="fn">warn</span>(<span class="str">"avís"</span>)
+<span class="fn">console</span>.<span class="fn">error</span>(<span class="str">"error"</span>)
+<span class="fn">console</span>.<span class="fn">table</span>(array)
+<span class="fn">console</span>.<span class="fn">dir</span>(objecte)
+<span class="fn">console</span>.<span class="fn">time</span>(<span class="str">"t"</span>)
+<span class="fn">console</span>.<span class="fn">timeEnd</span>(<span class="str">"t"</span>)
+
+<span class="cm">// Template literals</span>
+<span class="kw">let</span> nom = <span class="str">"Anna"</span>, edat = <span class="num">20</span>
+<span class="fn">console</span>.<span class="fn">log</span>(<span class="str">`${nom} té ${edat} anys`</span>)
+
+<span class="cm">// Destructuring ràpid</span>
+<span class="kw">const</span> {a, b} = obj
+<span class="kw">const</span> [x, y] = arr</pre>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Funcions</div>
+      <pre><span class="cm">// Declaració clàssica</span>
+<span class="kw">function</span> <span class="fn">suma</span>(a, b) {
+  <span class="kw">return</span> a + b
+}
+
+<span class="cm">// Expressió</span>
+<span class="kw">const</span> <span class="fn">resta</span> = <span class="kw">function</span>(a, b) {
+  <span class="kw">return</span> a - b
+}
+
+<span class="cm">// Arrow function</span>
+<span class="kw">const</span> <span class="fn">mul</span> = (a, b) =&gt; a * b
+<span class="kw">const</span> <span class="fn">doble</span> = x =&gt; x * <span class="num">2</span>
+
+<span class="cm">// Paràmetre per defecte</span>
+<span class="kw">function</span> <span class="fn">saluda</span>(nom = <span class="str">"món"</span>) {
+  <span class="kw">return</span> <span class="str">`Hola ${nom}!`</span>
+}
+
+<span class="cm">// Crida</span>
+<span class="fn">suma</span>(<span class="num">3</span>, <span class="num">4</span>)   <span class="cm">// → 7</span></pre>
+    </div>
+
+  </div>
+
+  <!-- COL 2 -->
+  <div class="col">
+
+    <div class="card">
+      <div class="card-title">Condicionals — if / else if / else</div>
+      <pre><span class="kw">if</span> (x &gt; <span class="num">0</span>) {
+  <span class="fn">console</span>.<span class="fn">log</span>(<span class="str">"positiu"</span>)
+} <span class="kw">else if</span> (x &lt; <span class="num">0</span>) {
+  <span class="fn">console</span>.<span class="fn">log</span>(<span class="str">"negatiu"</span>)
+} <span class="kw">else</span> {
+  <span class="fn">console</span>.<span class="fn">log</span>(<span class="str">"zero"</span>)
+}
+
+<span class="cm">// Operadors comparació</span>
+<span class="cm">// ===  !==  &gt;  &lt;  &gt;=  &lt;=</span>
+
+<span class="cm">// Operadors lògics</span>
+<span class="cm">// &amp;&amp;  (AND)   ||  (OR)   !  (NOT)</span>
+
+<span class="cm">// Ternari  condició ? si : no</span>
+<span class="kw">let</span> msg = x &gt; <span class="num">0</span> ? <span class="str">"+"</span> : <span class="str">"-"</span>
+
+<span class="cm">// Nullish coalescing</span>
+<span class="kw">let</span> val = user ?? <span class="str">"anònim"</span></pre>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Condicionals — switch</div>
+      <pre><span class="kw">switch</span> (dia) {
+  <span class="kw">case</span> <span class="str">"dl"</span>:
+    <span class="fn">console</span>.<span class="fn">log</span>(<span class="str">"Dilluns"</span>)
+    <span class="kw">break</span>
+  <span class="kw">case</span> <span class="str">"dm"</span>:
+    <span class="fn">console</span>.<span class="fn">log</span>(<span class="str">"Dimarts"</span>)
+    <span class="kw">break</span>
+  <span class="kw">case</span> <span class="str">"dc"</span>:
+  <span class="kw">case</span> <span class="str">"dj"</span>:
+    <span class="fn">console</span>.<span class="fn">log</span>(<span class="str">"Midweek"</span>)  <span class="cm">// fallthrough</span>
+    <span class="kw">break</span>
+  <span class="kw">default</span>:
+    <span class="fn">console</span>.<span class="fn">log</span>(<span class="str">"Cap de setmana"</span>)
+}
+<span class="cm">// ⚠ sense break → continua executant!</span></pre>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Events</div>
+      <pre><span class="cm">// Inline HTML (evitar en projectes)</span>
+&lt;button <span class="kw">onclick</span>=<span class="str">"func()"</span>&gt;Clic&lt;/button&gt;
+
+<span class="cm">// addEventListener — recomanat</span>
+<span class="kw">const</span> btn = <span class="fn">document</span>
+  .<span class="fn">getElementById</span>(<span class="str">"boto"</span>)
+
+btn.<span class="fn">addEventListener</span>(<span class="str">"click"</span>, (e) =&gt; {
+  <span class="fn">console</span>.<span class="fn">log</span>(<span class="str">"clicat!"</span>, e.target)
+})
+
+<span class="cm">// Eliminar event</span>
+btn.<span class="fn">removeEventListener</span>(<span class="str">"click"</span>, fn)
+
+<span class="cm">// Events freqüents</span>
+<span class="cm">// click  dblclick  mouseenter</span>
+<span class="cm">// keydown  keyup    input</span>
+<span class="cm">// change   submit   load</span>
+<span class="cm">// mousemove  scroll  resize</span></pre>
+    </div>
+
+  </div>
+
+  <!-- COL 3 -->
+  <div class="col">
+
+    <div class="card">
+      <div class="card-title">Bucles</div>
+      <pre><span class="cm">// for clàssic</span>
+<span class="kw">for</span> (<span class="kw">let</span> i = <span class="num">0</span>; i &lt; <span class="num">5</span>; i++) {
+  <span class="fn">console</span>.<span class="fn">log</span>(i)    <span class="cm">// 0,1,2,3,4</span>
+}
+
+<span class="cm">// for...of  (valors d'array)</span>
+<span class="kw">for</span> (<span class="kw">const</span> x <span class="kw">of</span> [<span class="num">10</span>, <span class="num">20</span>, <span class="num">30</span>]) {
+  <span class="fn">console</span>.<span class="fn">log</span>(x)
+}
+
+<span class="cm">// for...in  (claus d'objecte)</span>
+<span class="kw">for</span> (<span class="kw">const</span> k <span class="kw">in</span> obj) {
+  <span class="fn">console</span>.<span class="fn">log</span>(k, obj[k])
+}
+
+<span class="cm">// while</span>
+<span class="kw">let</span> i = <span class="num">0</span>
+<span class="kw">while</span> (i &lt; <span class="num">3</span>) { i++ }
+
+<span class="cm">// do...while  (mínim 1 iteració)</span>
+<span class="kw">do</span> {
+  i++
+} <span class="kw">while</span> (i &lt; <span class="num">5</span>)
+
+<span class="cm">// break → surt del bucle</span>
+<span class="cm">// continue → salta iteració</span></pre>
+    </div>
+
+    <div class="card">
+      <div class="card-title">DOM — getElementById i selectors</div>
+      <pre><span class="cm">// Selectors</span>
+<span class="kw">const</span> el = <span class="fn">document</span>.<span class="fn">getElementById</span>(<span class="str">"id"</span>)
+<span class="kw">const</span> el = <span class="fn">document</span>.<span class="fn">querySelector</span>(<span class="str">".cls"</span>)
+<span class="kw">const</span> els = <span class="fn">document</span>.<span class="fn">querySelectorAll</span>(<span class="str">"p"</span>)
+
+<span class="cm">// Llegir / escriure contingut</span>
+el.innerHTML  = <span class="str">"&lt;b&gt;Hola&lt;/b&gt;"</span>
+el.textContent = <span class="str">"text pla"</span>
+el.value       <span class="cm">// per inputs</span>
+
+<span class="cm">// Estil</span>
+el.style.color      = <span class="str">"red"</span>
+el.style.fontSize   = <span class="str">"18px"</span>
+el.style.display    = <span class="str">"none"</span>
+
+<span class="cm">// Classes CSS</span>
+el.classList.<span class="fn">add</span>(<span class="str">"actiu"</span>)
+el.classList.<span class="fn">remove</span>(<span class="str">"actiu"</span>)
+el.classList.<span class="fn">toggle</span>(<span class="str">"actiu"</span>)
+
+<span class="cm">// Atributs</span>
+el.<span class="fn">setAttribute</span>(<span class="str">"src"</span>, <span class="str">"img.png"</span>)
+el.<span class="fn">getAttribute</span>(<span class="str">"src"</span>)</pre>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Nombres aleatoris — Math.random</div>
+      <pre><span class="cm">// Decimal entre 0 (inclòs) i 1 (exclòs)</span>
+Math.<span class="fn">random</span>()           <span class="cm">// → 0.7341...</span>
+
+<span class="cm">// Enter entre 0 i N-1</span>
+Math.<span class="fn">floor</span>(Math.<span class="fn">random</span>() * <span class="num">10</span>)  <span class="cm">// 0..9</span>
+
+<span class="cm">// Enter entre min i max (inclosos)</span>
+<span class="kw">function</span> <span class="fn">randInt</span>(min, max) {
+  <span class="kw">return</span> Math.<span class="fn">floor</span>(
+    Math.<span class="fn">random</span>() * (max - min + <span class="num">1</span>)
+  ) + min
+}
+<span class="fn">randInt</span>(<span class="num">1</span>, <span class="num">6</span>)   <span class="cm">// dau: 1..6</span>
+
+<span class="cm">// Decimal amb decimals fixes</span>
+(Math.<span class="fn">random</span>() * <span class="num">100</span>).<span class="fn">toFixed</span>(<span class="num">2</span>)
+
+<span class="cm">// Element aleatori d'un array</span>
+<span class="kw">const</span> arr = [<span class="str">"a"</span>,<span class="str">"b"</span>,<span class="str">"c"</span>]
+arr[Math.<span class="fn">floor</span>(Math.<span class="fn">random</span>() * arr.length)]
+
+<span class="cm">// Color hexadecimal aleatori</span>
+<span class="str">"#"</span> + Math.<span class="fn">floor</span>(Math.<span class="fn">random</span>()*<span class="num">0xFFFFFF</span>)
+        .<span class="fn">toString</span>(<span class="num">16</span>).<span class="fn">padStart</span>(<span class="num">6</span>,<span class="str">"0"</span>)</pre>
+    </div>
+
+  </div>
+
+  <!-- COL 4 -->
+  <div class="col">
+
+    <div class="card">
+      <div class="card-title">Canvas — configuració bàsica</div>
+      <pre><span class="cm">&lt;!-- HTML --&gt;</span>
+&lt;canvas <span class="kw">id</span>=<span class="str">"c"</span> <span class="kw">width</span>=<span class="str">"400"</span> <span class="kw">height</span>=<span class="str">"300"</span>&gt;&lt;/canvas&gt;
+
+<span class="cm">// Obtenir context 2D</span>
+<span class="kw">const</span> c   = <span class="fn">document</span>.<span class="fn">getElementById</span>(<span class="str">"c"</span>)
+<span class="kw">const</span> ctx = c.<span class="fn">getContext</span>(<span class="str">"2d"</span>)
+
+<span class="cm">// Netejar canvas</span>
+ctx.<span class="fn">clearRect</span>(<span class="num">0</span>, <span class="num">0</span>, c.width, c.height)
+
+<span class="cm">// Colors i estil</span>
+ctx.fillStyle   = <span class="str">"#7F77DD"</span>  <span class="cm">// farciment</span>
+ctx.strokeStyle = <span class="str">"#fff"</span>    <span class="cm">// contorn</span>
+ctx.lineWidth   = <span class="num">2</span>
+ctx.globalAlpha = <span class="num">0.8</span>       <span class="cm">// opacitat</span></pre>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Canvas — formes i paths</div>
+      <pre><span class="cm">// Rectangle</span>
+ctx.<span class="fn">fillRect</span>(<span class="num">10</span>, <span class="num">10</span>, <span class="num">100</span>, <span class="num">50</span>)   <span class="cm">// x,y,w,h</span>
+ctx.<span class="fn">strokeRect</span>(<span class="num">10</span>, <span class="num">10</span>, <span class="num">100</span>, <span class="num">50</span>)
+
+<span class="cm">// Camí (path)</span>
+ctx.<span class="fn">beginPath</span>()
+ctx.<span class="fn">moveTo</span>(<span class="num">50</span>, <span class="num">50</span>)
+ctx.<span class="fn">lineTo</span>(<span class="num">150</span>, <span class="num">50</span>)
+ctx.<span class="fn">lineTo</span>(<span class="num">100</span>, <span class="num">120</span>)
+ctx.<span class="fn">closePath</span>()
+ctx.<span class="fn">fill</span>()   <span class="cm">// o ctx.stroke()</span>
+
+<span class="cm">// Cercle / arc</span>
+ctx.<span class="fn">beginPath</span>()
+<span class="cm">// arc(x, y, radi, inici, fi)</span>
+ctx.<span class="fn">arc</span>(<span class="num">100</span>, <span class="num">100</span>, <span class="num">40</span>, <span class="num">0</span>, Math.PI * <span class="num">2</span>)
+ctx.<span class="fn">fill</span>()
+
+<span class="cm">// Corba de Bézier</span>
+ctx.<span class="fn">bezierCurveTo</span>(cp1x,cp1y,cp2x,cp2y,x,y)</pre>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Canvas — text, imatge i animació</div>
+      <pre><span class="cm">// Text</span>
+ctx.font         = <span class="str">"bold 16px monospace"</span>
+ctx.textAlign    = <span class="str">"center"</span>   <span class="cm">// left|right</span>
+ctx.textBaseline = <span class="str">"middle"</span>
+ctx.<span class="fn">fillText</span>(<span class="str">"Hola!"</span>, <span class="num">200</span>, <span class="num">150</span>)
+ctx.<span class="fn">strokeText</span>(<span class="str">"Hola!"</span>, <span class="num">200</span>, <span class="num">150</span>)
+
+<span class="cm">// Imatge</span>
+<span class="kw">const</span> img = <span class="kw">new</span> <span class="fn">Image</span>()
+img.src = <span class="str">"foto.png"</span>
+img.onload = () =&gt; ctx.<span class="fn">drawImage</span>(img, <span class="num">0</span>, <span class="num">0</span>)
+<span class="cm">// drawImage(img, x, y, amplada, alçada)</span>
+
+<span class="cm">// Animació amb requestAnimationFrame</span>
+<span class="kw">let</span> x = <span class="num">0</span>
+<span class="kw">function</span> <span class="fn">loop</span>() {
+  ctx.<span class="fn">clearRect</span>(<span class="num">0</span>, <span class="num">0</span>, c.width, c.height)
+  ctx.<span class="fn">fillRect</span>(x++, <span class="num">100</span>, <span class="num">30</span>, <span class="num">30</span>)
+  <span class="fn">requestAnimationFrame</span>(<span class="fn">loop</span>)
+}
+<span class="fn">loop</span>()</pre>
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+  const SUN_PATH  = 'M12 4a1 1 0 0 1 1 1v1a1 1 0 0 1-2 0V5a1 1 0 0 1 1-1zm0 13a1 1 0 0 1 1 1v1a1 1 0 0 1-2 0v-1a1 1 0 0 1 1-1zm8-5a1 1 0 0 1-1 1h-1a1 1 0 0 1 0-2h1a1 1 0 0 1 1 1zM6 12a1 1 0 0 1-1 1H4a1 1 0 0 1 0-2h1a1 1 0 0 1 1 1zm9.657-5.657a1 1 0 0 1 0 1.414l-.707.707a1 1 0 1 1-1.414-1.414l.707-.707a1 1 0 0 1 1.414 0zM9.05 15.657a1 1 0 0 1 0 1.414l-.707.707a1 1 0 1 1-1.414-1.414l.707-.707a1 1 0 0 1 1.414 0zm6.607 0a1 1 0 0 1 1.414 0l.707.707a1 1 0 1 1-1.414 1.414l-.707-.707a1 1 0 0 1 0-1.414zM8.343 7.757a1 1 0 0 1-1.414 0l-.707-.707A1 1 0 0 1 7.636 5.636l.707.707a1 1 0 0 1 0 1.414zM12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z'
+  const MOON_PATH = 'M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z'
+
+  const icon  = document.getElementById('icon-theme')
+  const label = document.getElementById('btn-label')
+  const html  = document.documentElement
+
+  function setIcon(theme) {
+    const p = document.createElementNS('http://www.w3.org/2000/svg', 'path')
+    p.setAttribute('d', theme === 'dark' ? SUN_PATH : MOON_PATH)
+    icon.innerHTML = ''
+    icon.appendChild(p)
+  }
+
+  setIcon('light')
+  label.textContent = 'Fons fosc'
+
+  function toggleTheme() {
+    const current = html.getAttribute('data-theme')
+    const next    = current === 'dark' ? 'light' : 'dark'
+    html.setAttribute('data-theme', next)
+    label.textContent = next === 'dark' ? 'Fons clar' : 'Fons fosc'
+    setIcon(next)
+  }
+</script>
+
+
+</body></html>
