@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Figuras Canvas</title>
+</head>
+<body>
+<canvas id="miCanvas" width="600" height="400" style="border:1px solid black;"></canvas>
+
+<script>
+let ctx = document.getElementById("miCanvas").getContext("2d");
+
+//
+// 1) RECTÁNGULO
+//
+ctx.fillStyle = "red";
+ctx.fillRect(20, 20, 120, 60);   // x, y, ancho, alto
+
+//
+// 2) TRIÁNGULO
+//
+ctx.beginPath();
+ctx.fillStyle = "blue";
+ctx.moveTo(200, 20);   // punto superior
+ctx.lineTo(150, 100);  // esquina izquierda
+ctx.lineTo(250, 100);  // esquina derecha
+ctx.closePath();
+ctx.fill();
+
+//
+// 3) ELIPSE
+//
+ctx.beginPath();
+ctx.fillStyle = "green";
+ctx.ellipse(400, 70, 80, 40, 0, 0, Math.PI * 2); // x, y, radioX, radioY
+ctx.fill();
+
+//
+// 4) ESTRELLA (función reutilizable)
+//
+function dibujarEstrella(ctx, x, y, puntas, radioExt, radioInt, color) {
+    let rot = Math.PI / 2 * 3;
+    let paso = Math.PI / puntas;
+
+    ctx.beginPath();
+    ctx.moveTo(x, y - radioExt);
+
+    for (let i = 0; i < puntas; i++) {
+        ctx.lineTo(x + Math.cos(rot) * radioExt, y + Math.sin(rot) * radioExt);
+        rot += paso;
+
+        ctx.lineTo(x + Math.cos(rot) * radioInt, y + Math.sin(rot) * radioInt);
+        rot += paso;
+    }
+
+    ctx.closePath();
+    ctx.fillStyle = color;
+    ctx.fill();
+}
+
+// Dibujar estrella
+dibujarEstrella(ctx, 500, 80, 5, 40, 20, "gold");
+
+</script>
+</body>
+</html>
+
