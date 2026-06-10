@@ -37,30 +37,42 @@ ctx.ellipse(400, 70, 80, 40, 0, 0, Math.PI * 2); // x, y, radioX, radioY
 ctx.fill();
 
 //
-// 4) ESTRELLA (función reutilizable)
-//
-function dibujarEstrella(ctx, x, y, puntas, radioExt, radioInt, color) {
-    let rot = Math.PI / 2 * 3;
-    let paso = Math.PI / puntas;
+// 4) ESTRELLA 
+ctx.beginPath();
+ctx.fillStyle = "black";
 
-    ctx.beginPath();
-    ctx.moveTo(x, y - radioExt);
+// Punto inicial (arriba)
+ctx.moveTo(250, 50);
 
-    for (let i = 0; i < puntas; i++) {
-        ctx.lineTo(x + Math.cos(rot) * radioExt, y + Math.sin(rot) * radioExt);
-        rot += paso;
+// Siguiente punta
+ctx.lineTo(270, 100);
 
-        ctx.lineTo(x + Math.cos(rot) * radioInt, y + Math.sin(rot) * radioInt);
-        rot += paso;
-    }
+// Siguiente
+ctx.lineTo(320, 100);
 
-    ctx.closePath();
-    ctx.fillStyle = color;
-    ctx.fill();
-}
+// Siguiente
+ctx.lineTo(280, 130);
 
-// Dibujar estrella
-dibujarEstrella(ctx, 500, 80, 5, 40, 20, "gold");
+// Siguiente
+ctx.lineTo(300, 180);
+
+// Siguiente
+ctx.lineTo(250, 150);
+
+// Siguiente
+ctx.lineTo(200, 180);
+
+// Siguiente
+ctx.lineTo(220, 130);
+
+// Siguiente
+ctx.lineTo(180, 100);
+
+// Último
+ctx.lineTo(230, 100);
+
+ctx.closePath();
+ctx.fill();
 
 </script>
 </body>
