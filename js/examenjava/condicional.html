@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parell o Senar</title>
+</head>
+<body>
+
+    <h1>Parell o Senar</h1>
+
+    <label for="num">Introdueix un nombre enter:</label>
+    <input type="number" id="num">
+
+    <button onclick="comprovar()">Comprovar</button>
+
+    <div id="resultat"></div>
+    <script>
+        function comprovar (){
+            let valor = document.getElementById("num").value;
+            let resultat = document.getElementById("resultat");
+
+            valor = Number(valor);
+
+            if (valor % 2 === 0){
+                resultat.textContent = "El nombre es parell";
+            } else {
+                resultat.textContent = "El nombre es senar";
+            }
+
+        }
+    </script>
+
+</body>
+</html>
